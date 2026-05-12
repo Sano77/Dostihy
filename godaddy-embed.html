@@ -1,0 +1,387 @@
+<div id="vysoka-ai-assistant">
+  <button class="vysoka-chat-launcher" type="button" aria-expanded="false">
+    <span class="vysoka-launcher-icon" aria-hidden="true">AI</span>
+    <span>Spytat sa asistenta</span>
+  </button>
+
+  <section class="vysoka-chat-panel" hidden>
+    <header class="vysoka-chat-header">
+      <div>
+        <p>Vysoka Apartments</p>
+        <h2>Hostovsky AI asistent</h2>
+      </div>
+      <button class="vysoka-close" type="button" aria-label="Zavriet chat">×</button>
+    </header>
+
+    <div class="vysoka-quick-actions" aria-label="Rychle otazky">
+      <button type="button" data-question="Kde sa apartmany nachadzaju?">Poloha</button>
+      <button type="button" data-question="Ake vybavenie maju apartmany?">Vybavenie</button>
+      <button type="button" data-question="Ako si mozem rezervovat pobyt?">Rezervacia</button>
+      <button type="button" data-question="Posli mi odkazy na Airbnb Booking.com a direct booking.">Odkazy</button>
+      <button type="button" data-question="Co je blizko apartmanov?">Okolie</button>
+    </div>
+
+    <div class="vysoka-messages" aria-live="polite"></div>
+
+    <form class="vysoka-chat-form">
+      <input autocomplete="off" placeholder="Napiste otazku o pobyte..." type="text" />
+      <button type="submit">Odoslat</button>
+    </form>
+  </section>
+</div>
+
+<style>
+  #vysoka-ai-assistant {
+    --vysoka-ink: #17201d;
+    --vysoka-muted: #5d6964;
+    --vysoka-panel: #ffffff;
+    --vysoka-line: #d9d1c4;
+    --vysoka-brand: #1f6f5b;
+    --vysoka-brand-dark: #164d40;
+    --vysoka-accent: #c6503d;
+    --vysoka-shadow: 0 24px 80px rgba(23, 32, 29, 0.22);
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 999999;
+    display: grid;
+    justify-items: end;
+    gap: 12px;
+    color: var(--vysoka-ink);
+    font-family: Inter, Arial, Helvetica, sans-serif;
+  }
+
+  #vysoka-ai-assistant * {
+    box-sizing: border-box;
+  }
+
+  .vysoka-chat-launcher,
+  .vysoka-chat-form button,
+  .vysoka-quick-actions button,
+  .vysoka-close {
+    font: inherit;
+  }
+
+  .vysoka-chat-launcher {
+    min-height: 54px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    border: 0;
+    border-radius: 8px;
+    padding: 0 18px 0 10px;
+    background: var(--vysoka-brand);
+    color: #fff;
+    box-shadow: var(--vysoka-shadow);
+    cursor: pointer;
+    font-weight: 850;
+  }
+
+  .vysoka-launcher-icon {
+    width: 36px;
+    height: 36px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.16);
+    font-size: 0.86rem;
+  }
+
+  .vysoka-chat-panel {
+    width: min(410px, calc(100vw - 28px));
+    height: min(680px, calc(100vh - 108px));
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    overflow: hidden;
+    border: 1px solid rgba(23, 32, 29, 0.14);
+    border-radius: 8px;
+    background: var(--vysoka-panel);
+    box-shadow: var(--vysoka-shadow);
+  }
+
+  .vysoka-chat-header {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 18px 14px;
+    background: var(--vysoka-brand-dark);
+    color: #fff;
+  }
+
+  .vysoka-chat-header p {
+    margin: 0 0 4px;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .vysoka-chat-header h2 {
+    margin: 0;
+    font-size: 1.05rem;
+    letter-spacing: 0;
+  }
+
+  .vysoka-close {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 8px;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .vysoka-quick-actions {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px;
+    border-bottom: 1px solid var(--vysoka-line);
+  }
+
+  .vysoka-quick-actions button {
+    flex: 0 0 auto;
+    border: 1px solid #cfd8d4;
+    border-radius: 8px;
+    background: #f4f8f6;
+    color: var(--vysoka-brand-dark);
+    padding: 9px 11px;
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-weight: 750;
+  }
+
+  .vysoka-messages {
+    overflow-y: auto;
+    padding: 16px;
+    background: #fbfaf7;
+  }
+
+  .vysoka-message {
+    max-width: 88%;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    padding: 11px 12px;
+    line-height: 1.5;
+    font-size: 0.95rem;
+  }
+
+  .vysoka-message.bot {
+    background: #edf5f1;
+    color: #18352d;
+  }
+
+  .vysoka-message.user {
+    margin-left: auto;
+    background: var(--vysoka-brand);
+    color: #fff;
+  }
+
+  .vysoka-message a {
+    font-weight: 850;
+    color: inherit;
+  }
+
+  .vysoka-chat-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    padding: 12px;
+    border-top: 1px solid var(--vysoka-line);
+    background: #fff;
+  }
+
+  .vysoka-chat-form input {
+    min-width: 0;
+    height: 44px;
+    border: 1px solid #cfd8d4;
+    border-radius: 8px;
+    padding: 0 12px;
+    color: var(--vysoka-ink);
+    font: inherit;
+  }
+
+  .vysoka-chat-form button {
+    height: 44px;
+    border: 0;
+    border-radius: 8px;
+    padding: 0 14px;
+    background: var(--vysoka-accent);
+    color: #fff;
+    cursor: pointer;
+    font-weight: 850;
+  }
+
+  @media (max-width: 760px) {
+    #vysoka-ai-assistant {
+      right: 12px;
+      bottom: 12px;
+      left: 12px;
+    }
+
+    .vysoka-chat-panel,
+    .vysoka-chat-launcher {
+      width: 100%;
+    }
+
+    .vysoka-chat-launcher {
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const root = document.querySelector("#vysoka-ai-assistant");
+    if (!root) return;
+
+    const knowledge = [
+      {
+        keywords: ["kde", "adresa", "poloha", "location", "nachadza", "mapa", "directions"],
+        answer:
+          "Vysoka Apartments sa nachadza na adrese Vysoka 20, Bratislava, Slovensko. Je to centralna poloha vhodna na peso objavovanie Stareho Mesta a hlavnych atrakcii.",
+      },
+      {
+        keywords: ["vybavenie", "kuchyna", "postel", "beds", "kitchen", "zariadenie", "apartment"],
+        answer:
+          "Apartmany su moderne a plne zariadene. Hostia mozu ratat s pohodlnymi postelami, plnohodnotnou kuchynou, priestrannym rozlozenim a domacim komfortom pocas pobytu.",
+      },
+      {
+        keywords: [
+          "rezerv",
+          "book",
+          "booking",
+          "airbnb",
+          "direct",
+          "odkaz",
+          "cena",
+          "dostupnost",
+          "termin",
+          "availability",
+          "price",
+        ],
+        answer:
+          'Rezervaciu mozete spravit tromi sposobmi: <a href="https://vysokaapartments.com/booking" target="_blank" rel="noreferrer">direct booking cez web Vysoka Apartments</a>, <a href="http://www.airbnb.com/p/vysokaapartments" target="_blank" rel="noreferrer">Airbnb Vysoka Apartments</a> alebo <a href="https://www.booking.com/hotel/sk/vysoka-city-apartments.html" target="_blank" rel="noreferrer">Booking.com Vysoka Apartments</a>. Pri aktualnej cene a dostupnosti odporucam otvorit vybrany rezervacny kanal.',
+      },
+      {
+        keywords: ["okolie", "blizko", "atrakcie", "castle", "hrad", "old town", "pamiatky", "restauracie"],
+        answer:
+          "V okoli su Bratislavsky hrad, Prezidentsky palac a zahrady, Katedrala sv. Martina, Stare Mesto, Hlavne namestie, Michalska brana, Slovenske narodne divadlo, Eurovea Riverside, Banco Casino a Obchodna ulica.",
+      },
+      {
+        keywords: ["rodina", "business", "sluzob", "deti", "family", "solo", "traveler"],
+        answer:
+          "Ubytovanie je vhodne pre jednotlivcov, pary, rodiny aj business hosti. Vyhoda je kombinacia celeho apartmanu, centralnej polohy a pohodlia pri dlhsej aj kratsej navsteve.",
+      },
+      {
+        keywords: ["kontakt", "telefon", "email", "zavolat", "phone", "reach"],
+        answer:
+          'Kontakt na Vysoka Apartments je <a href="tel:+421911088553">+421 911 088 553</a>. Na webe je dostupny aj kontaktny formular "Reach Out to Vysoka".',
+      },
+      {
+        keywords: ["english", "anglicky", "slovak", "slovensky"],
+        answer:
+          "Mozete pisat slovensky alebo anglicky. I can answer in English too if that is more comfortable for the guest.",
+      },
+    ];
+
+    const fallback =
+      'Tuto informaciu nemam potvrdenu z verejneho webu Vysoka Apartments. Pre presnu odpoved odporucam kontaktovat ubytovanie na <a href="tel:+421911088553">+421 911 088 553</a>, otvorit <a href="https://vysokaapartments.com/booking" target="_blank" rel="noreferrer">direct booking</a>, <a href="http://www.airbnb.com/p/vysokaapartments" target="_blank" rel="noreferrer">Airbnb</a> alebo <a href="https://www.booking.com/hotel/sk/vysoka-city-apartments.html" target="_blank" rel="noreferrer">Booking.com</a>.';
+
+    const messages = root.querySelector(".vysoka-messages");
+    const form = root.querySelector(".vysoka-chat-form");
+    const input = root.querySelector(".vysoka-chat-form input");
+    const launcher = root.querySelector(".vysoka-chat-launcher");
+    const panel = root.querySelector(".vysoka-chat-panel");
+    const closeButton = root.querySelector(".vysoka-close");
+    const quickActions = root.querySelector(".vysoka-quick-actions");
+
+    const normalize = (text) =>
+      text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+    function escapeHtml(text) {
+      return text.replace(/[&<>"']/g, (char) => {
+        const map = {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;",
+        };
+        return map[char];
+      });
+    }
+
+    function findAnswer(question) {
+      const normalized = normalize(question);
+      const scored = knowledge
+        .map((item) => ({
+          ...item,
+          score: item.keywords.reduce(
+            (total, keyword) => (normalized.includes(normalize(keyword)) ? total + 1 : total),
+            0
+          ),
+        }))
+        .sort((a, b) => b.score - a.score);
+
+      return scored[0] && scored[0].score > 0 ? scored[0].answer : fallback;
+    }
+
+    function addMessage(role, html) {
+      const node = document.createElement("div");
+      node.className = "vysoka-message " + role;
+      node.innerHTML = html;
+      messages.appendChild(node);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function ask(question) {
+      const trimmed = question.trim();
+      if (!trimmed) return;
+      addMessage("user", escapeHtml(trimmed));
+      input.value = "";
+      window.setTimeout(() => addMessage("bot", findAnswer(trimmed)), 260);
+    }
+
+    function openChat() {
+      panel.hidden = false;
+      launcher.setAttribute("aria-expanded", "true");
+      input.focus();
+    }
+
+    function closeChat() {
+      panel.hidden = true;
+      launcher.setAttribute("aria-expanded", "false");
+      launcher.focus();
+    }
+
+    launcher.addEventListener("click", () => {
+      panel.hidden ? openChat() : closeChat();
+    });
+
+    closeButton.addEventListener("click", closeChat);
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      ask(input.value);
+    });
+
+    quickActions.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-question]");
+      if (button) ask(button.dataset.question);
+    });
+
+    addMessage(
+      "bot",
+      "Dobry den, som AI asistent Vysoka Apartments. Spytajte sa ma na polohu, vybavenie, rezervaciu, okolie alebo kontakt."
+    );
+  })();
+</script>
