@@ -1,38 +1,60 @@
-# Vysoka Apartments AI Assistant
+# Dostihy
 
-Staticky prototyp chat asistenta pre hosti webu `www.vysokaapartments.com`.
+Staticky webovy prehlad dostihoveho dna v Bratislave/Petrzalke.
 
-## Ako spustit
+Projekt obsahuje program, startovu listinu, kone, jazdcov, stajne, navstevnicke informacie, zaklady stavkovania a jednoduchu virtualnu simulaciu tiketu.
+
+## Ako spustit lokalne
 
 Otvorte subor `index.html` v prehliadaci.
 
-## Vlozenie do GoDaddy Website Buildera
+Alternativne mozete spustit jednoduchy lokalny server:
 
-Pre GoDaddy pouzite subor `godaddy-embed.html`. Skopirujte cely jeho obsah do HTML sekcie vo Websites + Marketing:
+```bash
+python3 -m http.server 4173
+```
 
-1. GoDaddy dashboard -> Websites + Marketing -> Manage.
-2. Otvorte stranku, kde chcete asistenta zobrazit.
-3. Add Section -> vyhladajte HTML -> Add.
-4. Do pola Custom Code vlozte cely obsah `godaddy-embed.html`.
-5. Dajte Preview a potom Publish.
+Potom otvorte:
 
-GoDaddy vlastny kod vklada ako sekciu na konkretnej stranke, preto ho treba vlozit na kazdu stranku, kde sa ma asistent zobrazit.
+```text
+http://localhost:4173/
+```
 
-## Co vie
+## Subory
 
-- odpovedat na polohu a adresu Vysoka 20, Bratislava
-- vysvetlit vybavenie apartmanov
-- nasmerovat hosta na direct booking, Airbnb, Booking.com alebo telefon
-- poradit atrakcie v okoli centra Bratislavy
-- odpovedat slovensky aj zakladne anglicky
+- `index.html` - struktura stranky
+- `styles.css` - vizual, layout a responzivne zobrazenie
+- `assistant.js` - data programu, filtrovanie, statistiky a simulacia stavkovania
+- `godaddy-embed.html` - samostatny HTML embed variant, ak bude treba vlozit stranku do buildera
 
-## Napojenie na realnu AI
+## Obsah stranky
 
-Subor `assistant.js` teraz pouziva lokalnu znalostnu bazu, aby widget fungoval aj bez backendu. Pre produkciu odporucam pridat maly server endpoint, ktory:
+- program dostihoveho dna 9.5.2026
+- startujuce kone a vlajky krajin
+- jazdci, stajne, hmotnosti a casy dostihov
+- statistiky startovej listiny
+- informacie o Dostihovej drahe v Petrzalke
+- vstupne, doprava a parkovanie
+- vysvetlenie totalizatora a druhov stavok
+- virtualna simulacia stavkovania bez realnych penazi
 
-1. prijme otazku hosta,
-2. prida overenu znalostnu bazu Vysoka Apartments,
-3. zavola AI model,
-4. vrati odpoved bez vymyslania cien alebo dostupnosti.
+## Publikovanie cez GitHub Pages
 
-Aktualne ceny a dostupnost by mal asistent vzdy overovat cez rezervacny system alebo Airbnb.
+Po nahrati suborov do repozitara zapnite GitHub Pages:
+
+1. Otvorte repozitar na GitHube.
+2. Prejdite do `Settings`.
+3. Otvorte `Pages`.
+4. V casti `Build and deployment` nastavte `Deploy from a branch`.
+5. Vyberte branch `main` a folder `/root`.
+6. Ulozte nastavenie.
+
+Verejna adresa bude v tvare:
+
+```text
+https://sano77.github.io/Dostihy/
+```
+
+## Zdroj dat
+
+Data su spracovane z verejnych informacii portalu `zavodisko.sk`, najma z terminov dostihov, propozicii, startovych listin a vysledkov pre Bratislavu 9.5.2026.
