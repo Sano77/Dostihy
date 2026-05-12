@@ -184,6 +184,13 @@ const races = [
   },
 ];
 
+const eventInfo = {
+  date: "9. máj 2026",
+  location: "Závodisko Bratislava, Starohájska 29, Petržalka",
+  mapsUrl:
+    "https://www.google.com/maps/dir/?api=1&destination=Z%C3%A1vodisko%20Bratislava%20Staroh%C3%A1jska%2029",
+};
+
 const careerStats = {
   earners: [
     ["FREE FOLIE (IRE)", "39 515 €", "21 št. · 6 víť."],
@@ -354,12 +361,17 @@ function renderProgram() {
         <div>
           <h3>${raceIndex + 1}. ${race.time} · ${race.name}</h3>
           <div class="race-meta">
+            <span>${eventInfo.date}</span>
+            <span>${eventInfo.location}</span>
             <span class="pill">${race.code}</span>
             <span>${race.type}</span>
             <span>${race.category}</span>
             <span>${race.distance}</span>
             <span>${race.purse}</span>
           </div>
+          <a class="map-link" href="${eventInfo.mapsUrl}" target="_blank" rel="noreferrer">
+            Google Maps navigácia
+          </a>
         </div>
         <div class="race-count">${visibleHorses.length}/${race.horses.length}</div>
       </div>
@@ -397,7 +409,7 @@ function renderHorseTable() {
       (entry) => `
         <tr>
           <td><strong><span class="flag" aria-hidden="true">${flagForHorse(entry.name)}</span>${entry.name}</strong></td>
-          <td>${entry.time} · ${entry.code} · ${entry.race}</td>
+          <td>${eventInfo.date} · ${entry.time} · ${eventInfo.location} · ${entry.code} · ${entry.race}</td>
           <td>${entry.age}</td>
           <td>${entry.weight} kg</td>
           <td>${entry.stable}</td>

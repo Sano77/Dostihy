@@ -452,6 +452,24 @@ h2 {
   font-size: 0.92rem;
 }
 
+.map-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  margin-top: 12px;
+  border-radius: 8px;
+  background: #fff4df;
+  color: var(--green-dark);
+  padding: 0 11px;
+  font-size: 0.9rem;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.map-link:hover {
+  background: #ead9b8;
+}
+
 .pill {
   display: inline-flex;
   align-items: center;
