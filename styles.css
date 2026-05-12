@@ -439,6 +439,19 @@ h2 {
   border-bottom: 1px solid var(--line);
 }
 
+.race-date {
+  display: inline-flex;
+  width: fit-content;
+  margin: 0 0 10px;
+  border-radius: 8px;
+  background: var(--green-dark);
+  color: #fff;
+  padding: 7px 10px;
+  font-size: 0.9rem;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
 .race-head h3 {
   margin: 0 0 8px;
   font-size: 1.25rem;

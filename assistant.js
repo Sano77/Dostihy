@@ -359,10 +359,9 @@ function renderProgram() {
     card.innerHTML = `
       <div class="race-head">
         <div>
+          <p class="race-date">${eventInfo.date} · ${race.time} · ${eventInfo.location}</p>
           <h3>${raceIndex + 1}. ${race.time} · ${race.name}</h3>
           <div class="race-meta">
-            <span>${eventInfo.date}</span>
-            <span>${eventInfo.location}</span>
             <span class="pill">${race.code}</span>
             <span>${race.type}</span>
             <span>${race.category}</span>
