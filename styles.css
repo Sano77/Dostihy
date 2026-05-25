@@ -265,6 +265,53 @@ h2 {
   gap: 16px;
 }
 
+.upcoming-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.upcoming-card {
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(22, 33, 29, 0.08);
+}
+
+.upcoming-card.is-next {
+  border-color: var(--green-dark);
+  background: #f9fff9;
+}
+
+.upcoming-date {
+  margin-bottom: 12px;
+  color: var(--red);
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.upcoming-card h3 {
+  margin-bottom: 10px;
+}
+
+.upcoming-card p:not(.upcoming-date) {
+  margin-bottom: 8px;
+  color: var(--green-dark);
+  font-weight: 900;
+}
+
+.upcoming-card small {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
 .visit-card {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -686,6 +733,7 @@ tbody tr:hover {
   .hero,
   .toolbar,
   .visit-grid,
+  .upcoming-list,
   .betting-layout,
   .betting-info,
   .split {

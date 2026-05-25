@@ -3,17 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Závodisko Bratislava · Program 9.5.2026</title>
+    <title>Dostihy Bratislava · Sezóna 2026</title>
     <meta
       name="description"
-      content="Prehľad prihlášok, koní, trénerov a štatistík pre dostihový deň 9. mája 2026 v Bratislave."
+      content="Prehľad sezóny 2026, programu, koní, jazdcov, návštevníckych informácií a simulátora stávkovania."
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="topbar">
-      <a href="#program" class="brand">Závodisko · 9.5.2026</a>
+      <a href="#program" class="brand">Dostihy · Sezóna 2026</a>
       <nav aria-label="Navigácia">
+        <a href="#terms">Termíny</a>
         <a href="#program">Program</a>
         <a href="#visit">Ako na dostihy</a>
         <a href="#betting">Stávkovanie</a>
@@ -26,12 +27,12 @@
     <main>
       <section class="hero" aria-labelledby="page-title">
         <div class="hero-copy">
-          <p class="eyebrow">Bratislava · Starohájska · Sobota 9. mája 2026 · 14:00</p>
-          <h1 id="page-title">Jarné klasické dostihy</h1>
+          <p class="eyebrow">Bratislava · Starohájska · Sezóna 2026</p>
+          <h1 id="page-title">Dostihy v Petržalke</h1>
           <p>
-            Kompaktný pracovný prehľad prihlášok na 4. dostihový deň. Jazdci ešte nie sú
-            už zverejnení v štartovej listine, preto je program aktualizovaný o jazdcov,
-            štartové časy, škrty a dohlásené kone.
+            Aktuálny prehľad termínov, návštevnícke informácie, archívny program
+            jarných klasických dostihov a tréningový simulátor stávkovania bez reálnych
+            peňazí.
           </p>
           <div class="hero-actions" aria-label="Odkazy na program">
             <a
@@ -46,11 +47,21 @@
           </div>
         </div>
         <div class="hero-panel" aria-label="Súhrn">
-          <div><strong>9</strong><span>dostihov</span></div>
-          <div><strong>75</strong><span>štartujúcich</span></div>
-          <div><strong>75</strong><span>unikátnych koní</span></div>
-          <div><strong>25</strong><span>jazdcov v programe</span></div>
+          <div><strong>7.6.</strong><span>najbližší deň BA</span></div>
+          <div><strong>14:00</strong><span>štart prvých dostihov</span></div>
+          <div><strong>9.5.</strong><span>archív programu</span></div>
+          <div><strong>75</strong><span>koní v archíve</span></div>
         </div>
+      </section>
+
+      <section id="terms" class="section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Aktualizované 25.5.2026</p>
+            <h2>Najbližšie termíny</h2>
+          </div>
+        </div>
+        <div id="upcoming-list" class="upcoming-list"></div>
       </section>
 
       <section id="visit" class="section visit-section">
@@ -184,8 +195,8 @@
             <h3 id="sim-title">Simulácia stávky</h3>
             <p class="muted small">
               Toto je iba tréningová kalkulačka bez reálnych peňazí a bez odoslania stávky.
-              Kurzy sú ilustračné, pri totalizátore sa skutočné výhry určujú až podľa
-              prijatých stávok a oficiálneho výsledku.
+              Momentálne používa archívnu štartovú listinu z 9.5.2026; po zverejnení
+              ďalšej štartovej listiny sa dá prepnúť na nový dostihový deň.
             </p>
             <div class="sim-form">
               <label>
@@ -247,8 +258,8 @@
 
       <section id="program" class="section">
         <div class="section-heading">
-          <p class="eyebrow">Oficiálna štartová listina</p>
-          <h2>Program dňa</h2>
+          <p class="eyebrow">Archív 9.5.2026</p>
+          <h2>Program jarných klasických dostihov</h2>
         </div>
         <div id="race-list" class="race-list"></div>
       </section>
@@ -317,8 +328,8 @@
 
       <section class="source-note">
         <strong>Zdroj dát:</strong>
-        zavodisko.sk, sekcia Termíny dostihov, Propozície 2026 a Štartové listiny pre
-        Bratislava 9.5.2026. Stav spracovania: 12.5.2026.
+        zavodisko.sk, sekcia Termíny dostihov 2026, Propozície 2026 a Štartové listiny
+        pre Bratislavu 9.5.2026. Stav spracovania: 25.5.2026.
       </section>
     </main>
 

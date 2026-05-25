@@ -184,6 +184,49 @@ const races = [
   },
 ];
 
+const upcomingEvents = [
+  {
+    date: "7.6.2026",
+    day: "Nedeľa",
+    title: "Rovinové dostihy",
+    place: "Bratislava",
+    time: "14:00",
+    mapsUrl:
+      "https://www.google.com/maps/dir/?api=1&destination=Z%C3%A1vodisko%20Bratislava%20Staroh%C3%A1jska%2029",
+    note: "Najbližší dostihový deň v Petržalke.",
+  },
+  {
+    date: "14.6.2026",
+    day: "Nedeľa",
+    title: "Rovinové a prekážkové dostihy",
+    place: "Topoľčianky",
+    time: "14:00",
+    mapsUrl:
+      "https://www.google.com/maps/dir/?api=1&destination=N%C3%A1rodn%C3%BD%20%C5%BEreb%C4%8D%C3%ADn%20Topo%C4%BE%C4%8Dianky",
+    note: "Mimobratislavský dostihový deň.",
+  },
+  {
+    date: "28.6.2026",
+    day: "Nedeľa",
+    title: "Rovinové a klusácke dostihy",
+    place: "Bratislava",
+    time: "14:00",
+    mapsUrl:
+      "https://www.google.com/maps/dir/?api=1&destination=Z%C3%A1vodisko%20Bratislava%20Staroh%C3%A1jska%2029",
+    note: "Ďalší bratislavský termín pred derby mítingom.",
+  },
+  {
+    date: "19.7.2026",
+    day: "Nedeľa",
+    title: "34. Slovenské derby",
+    place: "Bratislava",
+    time: "14:00",
+    mapsUrl:
+      "https://www.google.com/maps/dir/?api=1&destination=Z%C3%A1vodisko%20Bratislava%20Staroh%C3%A1jska%2029",
+    note: "Hlavný vrchol sezóny.",
+  },
+];
+
 const eventInfo = {
   date: "9. máj 2026",
   location: "Závodisko Bratislava, Starohájska 29, Petržalka",
@@ -262,6 +305,7 @@ const allEntries = races.flatMap((race, raceIndex) =>
 );
 
 const raceList = document.querySelector("#race-list");
+const upcomingList = document.querySelector("#upcoming-list");
 const horseTable = document.querySelector("#horse-table");
 const search = document.querySelector("#search");
 const raceFilter = document.querySelector("#race-filter");
@@ -297,6 +341,26 @@ function renderRaceOptions() {
     option.textContent = `${index + 1}. ${race.time} · ${race.name}`;
     raceFilter.appendChild(option);
   });
+}
+
+function renderUpcomingEvents() {
+  upcomingList.innerHTML = upcomingEvents
+    .map(
+      (event, index) => `
+        <article class="upcoming-card ${index === 0 ? "is-next" : ""}">
+          <div>
+            <p class="upcoming-date">${event.day} · ${event.date} · ${event.time}</p>
+            <h3>${event.title}</h3>
+            <p>${event.place}</p>
+            <small>${event.note}</small>
+          </div>
+          <a class="map-link" href="${event.mapsUrl}" target="_blank" rel="noreferrer">
+            Navigovať
+          </a>
+        </article>
+      `,
+    )
+    .join("");
 }
 
 function renderBetRaceOptions() {
@@ -490,6 +554,7 @@ function updateTicket() {
   ticketPreview.innerHTML = `
     <h4>Ukážka tiketu</h4>
     <dl>
+      <dt>Dátum</dt><dd>${eventInfo.date}</dd>
       <dt>Dostih</dt><dd>${race.name}</dd>
       <dt>Typ</dt><dd>${typeName}</dd>
       <dt>Tip</dt><dd>${names.map((name) => `${flagForHorse(name)} ${name}`).join(" → ")}</dd>
@@ -498,7 +563,7 @@ function updateTicket() {
       <dt>Ilustr. kurz</dt><dd>${hasDuplicate ? "neplatná kombinácia" : odds.toFixed(2)}</dd>
       <dt>Možný návrat</dt><dd>${hasDuplicate ? "vyber rozdielne kone" : `${possibleReturn.toFixed(2)} virtuálne €`}</dd>
     </dl>
-    <p class="ticket-warning">Simulácia neslúži na reálne stávkovanie. Reálny tiket sa podáva iba v oficiálnej stávkovej kancelárii totalizátora a výhry sa určujú podľa skutočného poolu stávok.</p>
+    <p class="ticket-warning">Simulácia používa archívnu štartovú listinu z 9.5.2026 a neslúži na reálne stávkovanie. Reálny tiket sa podáva iba v oficiálnej stávkovej kancelárii totalizátora a výhry sa určujú podľa skutočného poolu stávok.</p>
   `;
 }
 
@@ -509,6 +574,7 @@ function render() {
 
 renderRaceOptions();
 renderBetRaceOptions();
+renderUpcomingEvents();
 renderStats(stats.jockeys, "#trainer-stats", "×");
 renderStats(stats.stables, "#stable-stats", "×");
 renderStats(stats.earners, "#earning-stats");

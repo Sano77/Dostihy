@@ -2,7 +2,7 @@
 
 Staticky webovy prehlad dostihoveho dna v Bratislave/Petrzalke.
 
-Projekt obsahuje program, startovu listinu, kone, jazdcov, stajne, navstevnicke informacie, zaklady stavkovania a jednoduchu virtualnu simulaciu tiketu.
+Projekt obsahuje najblizsie terminy sezony 2026, archivny program, startovu listinu, kone, jazdcov, stajne, navstevnicke informacie, zaklady stavkovania a jednoduchu virtualnu simulaciu tiketu.
 
 ## Ako spustit lokalne
 
@@ -30,6 +30,7 @@ http://localhost:4173/
 ## Obsah stranky
 
 - program dostihoveho dna 9.5.2026
+- najblizsie terminy po 25.5.2026
 - startujuce kone a vlajky krajin
 - jazdci, stajne, hmotnosti a casy dostihov
 - statistiky startovej listiny
@@ -57,4 +58,4 @@ https://sano77.github.io/Dostihy/
 
 ## Zdroj dat
 
-Data su spracovane z verejnych informacii portalu `zavodisko.sk`, najma z terminov dostihov, propozicii, startovych listin a vysledkov pre Bratislavu 9.5.2026.
+Data su spracovane z verejnych informacii portalu `zavodisko.sk`, najma z terminov dostihov, propozicii, startovych listin a vysledkov pre sezonu 2026.
