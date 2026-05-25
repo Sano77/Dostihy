@@ -254,6 +254,17 @@ h2 {
   letter-spacing: 0;
 }
 
+.section-note {
+  max-width: 720px;
+  margin: 12px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.section-note strong {
+  color: var(--ink);
+}
+
 .race-list {
   display: grid;
   gap: 16px;
@@ -269,6 +280,116 @@ h2 {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
+}
+
+.result-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.result-kpi {
+  min-height: 118px;
+  display: grid;
+  align-content: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fffaf1;
+  padding: 16px;
+}
+
+.result-kpi strong {
+  color: var(--green-dark);
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1.05;
+}
+
+.result-kpi span {
+  color: var(--muted);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.results-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.result-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: 0 10px 30px rgba(22, 33, 29, 0.08);
+}
+
+.result-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  padding: 18px 18px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.result-head h3 {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+}
+
+.result-podium {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.result-podium li {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 12px;
+  align-items: start;
+  border-bottom: 1px solid #ece4d7;
+  padding: 12px 18px;
+}
+
+.result-podium li::marker {
+  content: "";
+}
+
+.finish-position {
+  width: 34px;
+  min-height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--green-dark);
+  color: #fff;
+  font-weight: 900;
+}
+
+.result-podium strong {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.result-podium small {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.result-toto {
+  margin: 0;
+  padding: 12px 18px 16px;
+  color: var(--blue);
+  font-size: 0.92rem;
+  font-weight: 850;
+  line-height: 1.5;
 }
 
 .upcoming-card {
@@ -734,6 +855,8 @@ tbody tr:hover {
   .toolbar,
   .visit-grid,
   .upcoming-list,
+  .result-summary,
+  .results-list,
   .betting-layout,
   .betting-info,
   .split {

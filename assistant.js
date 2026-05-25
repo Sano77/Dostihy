@@ -234,6 +234,128 @@ const eventInfo = {
     "https://www.google.com/maps/dir/?api=1&destination=Z%C3%A1vodisko%20Bratislava%20Staroh%C3%A1jska%2029",
 };
 
+const previousResults = {
+  date: "24.5.2026",
+  day: "Nedeľa",
+  place: "Bratislava",
+  sourceUrl:
+    "https://web.zavodisko.sk/sk/vysledky.html?id_den=10181&typ_dostihu=1&stat=1&rok=2026",
+  races: [
+    {
+      code: "7033",
+      time: "14:00",
+      name: "Cena Sulmana",
+      type: "rovina V. kat.",
+      distance: "1800 m",
+      resultTime: "01:54.62",
+      toto: "Víťaz 2,1:1 · Miesto 3,7, 3,2:1 · P2 9,0:1 · P3 24,5:1",
+      podium: [
+        ["1", "MIDNIGHT BEST (GER)", "am. Ivana Hrubšová", "iste", "2.10"],
+        ["2", "WIRRWARR (GER)", "dž. Jaroslav Línek", "1 1/4", "6.50"],
+        ["3", "MISS MAGIC (IRE)", "dž. Monir Madihi", "1 3/4", "4.70"],
+      ],
+    },
+    {
+      code: "7034",
+      time: "14:42",
+      name: "Hendikep Vlady",
+      type: "rovina III. kat.",
+      distance: "1700 m",
+      resultTime: "01:47.55",
+      toto: "Víťaz 4,8:1 · Miesto 2,9, 3,8:1 · P2 prevod · P3 prevod",
+      podium: [
+        ["1", "DAGRIS (IRE)", "dž. Monir Madihi", "iste", "4.80"],
+        ["2", "TOMMY LEE HORN (FR)", "Michaela Jakábová", "1 1/4", "4.90"],
+        ["3", "GOLDERA (CZE)", "dž. Jiří Palík", "3/4", "4.60"],
+      ],
+    },
+    {
+      code: "7035",
+      time: "15:16",
+      name: "Cena InMethod s.r.o.",
+      type: "prútené prekážky",
+      distance: "3600 m",
+      resultTime: "04:21.67",
+      toto: "Víťaz 2,3:1 · Miesto 1,3, 1,7, 1,6:1 · P2 25,4:1 · P3 105,6:1",
+      podium: [
+        ["1", "NIGHT OF DREAMS (GER)", "dž. Jan Odložil", "boj", "2.30"],
+        ["2", "PRINCE D'ORAGE (FR)", "Radek Man", "3/4", "5.40"],
+        ["3", "MAGIC MERLIN (FR)", "dž. Ondřej Velek", "1/2", "3.60"],
+      ],
+    },
+    {
+      code: "7036",
+      time: "16:04",
+      name: "Hendikep Master Copyho",
+      type: "rovina IV. kat.",
+      distance: "1400 m",
+      resultTime: "01:25.67",
+      toto: "Víťaz 4,5:1 · Miesto 1,5, 1,5, 6,1:1 · P2 14,2:1 · P3 prevod",
+      podium: [
+        ["1", "GRAY TOUCH (FR)", "dž. Jaroslav Línek", "boj", "4.50"],
+        ["2", "LADY FREE (IRE)", "am. Nikola Miklová", "1/2", "8.80"],
+        ["3", "BLUE NEPTUN (IRE)", "am. Ivana Hrubšová", "3 1/2", "6.90"],
+      ],
+    },
+    {
+      code: "7037",
+      time: "16:28",
+      name: "Cena InMethod s.r.o.",
+      type: "steeplechase",
+      distance: "3600 m",
+      resultTime: "04:50.20",
+      toto: "Víťaz 4,3:1 · Miesto 2,4, 1,7:1 · P2 8,8:1 · P3 34,3:1",
+      podium: [
+        ["1", "MISTER SLOVAKIA (IRE)", "dž. Adam Čmiel", "ľahko", "4.30"],
+        ["2", "MEDUNKA (FR)", "dž. Ondřej Velek", "2 1/4", "1.60"],
+        ["3", "LOVELY LENA (IRE)", "dž. Jan Odložil", "8", "2.00"],
+      ],
+    },
+    {
+      code: "7038",
+      time: "16:58",
+      name: "Cena VETIS",
+      type: "rovina II. kat.",
+      distance: "1200 m",
+      resultTime: "01:11.12",
+      toto: "Víťaz 6,5:1 · Miesto 1,7, 1,4:1 · P2 13,6:1 · P3 179,4:1",
+      podium: [
+        ["1", "WELSHTINO (IRE)", "dž. Jiří Palík", "iste", "6.50"],
+        ["2", "MAXIMUM RISK (IRE)", "dž. Jaroslav Línek", "1 1/2", "2.20"],
+        ["3", "LITTLE LORD (GER)", "dž. Sofie Kvízová", "1/2", "5.50"],
+      ],
+    },
+    {
+      code: "7039",
+      time: "17:27",
+      name: "Memoriál Augustína Rišku",
+      type: "rovina II. kat.",
+      distance: "2400 m",
+      resultTime: "02:32.44",
+      toto: "Víťaz 2,1:1 · Miesto 1,2, 1,6:1 · P2 5,5:1 · P3 28,1:1",
+      podium: [
+        ["1", "BLACK HRON (IRE)", "dž. Jaroslav Línek", "iste", "2.10"],
+        ["2", "SIR EGERTON (CZE)", "dž. Monir Madihi", "1 1/4", "10.30"],
+        ["3", "MUSTELA (IRE)", "dž. Jiří Palík", "3 1/4", "6.80"],
+      ],
+    },
+    {
+      code: "7040",
+      time: "18:00",
+      name: "Cena InMethod s.r.o.",
+      type: "rovina IV. kat.",
+      distance: "2400 m",
+      resultTime: "02:32.92",
+      toto: "Víťaz 7,0:1 · Miesto 2,3, 2,2, 3,3:1 · P2 15,0:1 · P3 54,3:1",
+      podium: [
+        ["1", "WITCHER OF LIPS (GER)", "dž. Monir Madihi", "tuhý boj", "7.00"],
+        ["2", "VICTORY STAR (FR)", "am. Nikola Miklová", "kr. hlava", "4.50"],
+        ["3", "ARAMIS (IRE)", "dž. Jiřina Andrésová", "3 1/4", "6.00"],
+      ],
+    },
+  ],
+};
+
 const careerStats = {
   earners: [
     ["FREE FOLIE (IRE)", "39 515 €", "21 št. · 6 víť."],
@@ -306,6 +428,8 @@ const allEntries = races.flatMap((race, raceIndex) =>
 
 const raceList = document.querySelector("#race-list");
 const upcomingList = document.querySelector("#upcoming-list");
+const resultSummary = document.querySelector("#result-summary");
+const resultsList = document.querySelector("#results-list");
 const horseTable = document.querySelector("#horse-table");
 const search = document.querySelector("#search");
 const raceFilter = document.querySelector("#race-filter");
@@ -357,6 +481,73 @@ function renderUpcomingEvents() {
           <a class="map-link" href="${event.mapsUrl}" target="_blank" rel="noreferrer">
             Navigovať
           </a>
+        </article>
+      `,
+    )
+    .join("");
+}
+
+function renderPreviousResults() {
+  const winners = previousResults.races.map((race) => race.podium[0][1]);
+  const winningJockeys = countBy(
+    previousResults.races.map((race) => ({ jockey: race.podium[0][2] })),
+    "jockey",
+  );
+  const topJockey = winningJockeys[0];
+
+  resultSummary.innerHTML = `
+    <article class="result-kpi">
+      <strong>${previousResults.races.length}</strong>
+      <span>dostihov</span>
+    </article>
+    <article class="result-kpi">
+      <strong>${winners.length}</strong>
+      <span>víťazov dňa</span>
+    </article>
+    <article class="result-kpi">
+      <strong>${topJockey ? topJockey[0] : "—"}</strong>
+      <span>najviac víťazstiev: ${topJockey ? `${topJockey[1]}×` : "—"}</span>
+    </article>
+    <article class="result-kpi">
+      <strong>${previousResults.place}</strong>
+      <span>${previousResults.day} · ${previousResults.date}</span>
+    </article>
+  `;
+
+  resultsList.innerHTML = previousResults.races
+    .map(
+      (race) => `
+        <article class="result-card">
+          <div class="result-head">
+            <div>
+              <p class="race-date">${previousResults.date} · ${race.time} · ${previousResults.place}</p>
+              <h3>${race.code} · ${race.name}</h3>
+              <div class="race-meta">
+                <span>${race.type}</span>
+                <span>${race.distance}</span>
+                <span>čas víťaza ${race.resultTime}</span>
+              </div>
+            </div>
+            <a class="map-link" href="${previousResults.sourceUrl}" target="_blank" rel="noreferrer">
+              Detail
+            </a>
+          </div>
+          <ol class="result-podium">
+            ${race.podium
+              .map(
+                ([place, horse, jockey, finish, evk]) => `
+                  <li>
+                    <span class="finish-position">${place}</span>
+                    <div>
+                      <strong><span class="flag" aria-hidden="true">${flagForHorse(horse)}</span>${horse}</strong>
+                      <small>${jockey} · výrok ${finish} · EVK ${evk}</small>
+                    </div>
+                  </li>
+                `,
+              )
+              .join("")}
+          </ol>
+          <p class="result-toto">${race.toto}</p>
         </article>
       `,
     )
@@ -423,7 +614,7 @@ function renderProgram() {
     card.innerHTML = `
       <div class="race-head">
         <div>
-          <p class="race-date">${eventInfo.date} · ${race.time} · ${eventInfo.location}</p>
+          <p class="race-date">${race.time} · ${eventInfo.location}</p>
           <h3>${raceIndex + 1}. ${race.time} · ${race.name}</h3>
           <div class="race-meta">
             <span class="pill">${race.code}</span>
@@ -472,7 +663,7 @@ function renderHorseTable() {
       (entry) => `
         <tr>
           <td><strong><span class="flag" aria-hidden="true">${flagForHorse(entry.name)}</span>${entry.name}</strong></td>
-          <td>${eventInfo.date} · ${entry.time} · ${eventInfo.location} · ${entry.code} · ${entry.race}</td>
+          <td>${entry.time} · ${eventInfo.location} · ${entry.code} · ${entry.race}</td>
           <td>${entry.age}</td>
           <td>${entry.weight} kg</td>
           <td>${entry.stable}</td>
@@ -554,7 +745,7 @@ function updateTicket() {
   ticketPreview.innerHTML = `
     <h4>Ukážka tiketu</h4>
     <dl>
-      <dt>Dátum</dt><dd>${eventInfo.date}</dd>
+      <dt>Archív</dt><dd>program z ${eventInfo.date}</dd>
       <dt>Dostih</dt><dd>${race.name}</dd>
       <dt>Typ</dt><dd>${typeName}</dd>
       <dt>Tip</dt><dd>${names.map((name) => `${flagForHorse(name)} ${name}`).join(" → ")}</dd>
@@ -575,6 +766,7 @@ function render() {
 renderRaceOptions();
 renderBetRaceOptions();
 renderUpcomingEvents();
+renderPreviousResults();
 renderStats(stats.jockeys, "#trainer-stats", "×");
 renderStats(stats.stables, "#stable-stats", "×");
 renderStats(stats.earners, "#earning-stats");
