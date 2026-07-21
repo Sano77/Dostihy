@@ -186,16 +186,6 @@ const races = [
 
 const upcomingEvents = [
   {
-    date: "19.7.2026",
-    day: "Nedeľa",
-    title: "34. Slovenské derby",
-    place: "Bratislava",
-    time: "14:00",
-    mapsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=Z%C3%A1vodisko%20Bratislava%20Staroh%C3%A1jska%2029",
-    note: "Hlavný vrchol sezóny, 9 dostihov od 14:00. Samotné derby (2400 m, 13 koní) štartuje o 17:40.",
-  },
-  {
     date: "9.8.2026",
     day: "Nedeľa",
     title: "32. Zlatý bičík a 35. Cena turfu",
