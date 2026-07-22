@@ -762,12 +762,33 @@ function renderHorseTable() {
     .join("");
 }
 
+function statMagnitude(value) {
+  return Number(String(value).replace(/[^\d]/g, "")) || 0;
+}
+
+function rankBadge(index) {
+  return medals[index + 1] || `${index + 1}.`;
+}
+
 function renderStats(list, target, suffix = "") {
-  document.querySelector(target).innerHTML = list
-    .slice(0, 12)
-    .map((item) => {
-      const [name, value, detail] = item;
-      return `<li><div class="stat-line"><strong>${name}</strong><span>${value}${suffix}</span></div>${detail ? `<small>${detail}</small>` : ""}</li>`;
+  const top = list.slice(0, 12);
+  const max = Math.max(...top.map(([, value]) => statMagnitude(value)), 1);
+  document.querySelector(target).innerHTML = top
+    .map(([name, value, detail], index) => {
+      const width = Math.max(6, Math.round((statMagnitude(value) / max) * 100));
+      return `
+        <li>
+          <span class="stat-rank">${rankBadge(index)}</span>
+          <div class="stat-body">
+            <div class="stat-line">
+              <strong>${name}</strong>
+              <span>${value}${suffix}</span>
+            </div>
+            <div class="stat-bar-track"><div class="stat-bar-fill" style="width:${width}%"></div></div>
+            ${detail ? `<small>${detail}</small>` : ""}
+          </div>
+        </li>
+      `;
     })
     .join("");
 }

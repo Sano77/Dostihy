@@ -836,6 +836,70 @@ li::marker {
   white-space: nowrap;
 }
 
+.stat-card-meta {
+  margin: -8px 0 14px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.stat-list {
+  list-style: none;
+  padding-left: 0;
+  gap: 16px;
+}
+
+.stat-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.stat-rank {
+  flex: 0 0 30px;
+  padding-top: 2px;
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: var(--green-dark);
+}
+
+.stat-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.stat-list .stat-line {
+  border-bottom: none;
+  padding-bottom: 0;
+  gap: 10px;
+}
+
+.stat-list .stat-line strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stat-bar-track {
+  margin-top: 6px;
+  height: 8px;
+  border-radius: 999px;
+  background: #ece4d7;
+  overflow: hidden;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  min-width: 4px;
+  border-radius: 999px;
+  background: var(--green-dark);
+}
+
+.stat-list small {
+  display: block;
+  margin-top: 4px;
+}
+
 .split {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 430px);
