@@ -184,36 +184,114 @@ const races = [
   },
 ];
 
-const upcomingEvents = [
+const zavodiskoTerminyUrl = "https://web.zavodisko.sk/sk/terminy-dostihov-a-akcii.html";
+
+const raceDays = [
+  {
+    date: "9.5.2026",
+    day: "Sobota",
+    place: "Bratislava",
+    title: "Jarné klasické dostihy",
+    status: "archive-program",
+    statusLabel: "Archív · program",
+    summary:
+      "Archívna štartová listina 8 dostihov (kone, jazdci, váhy, stajne) je nižšie v sekcii Program.",
+    anchor: "#program",
+    linkLabel: "Zobraziť program",
+  },
+  {
+    date: "24.5.2026",
+    day: "Nedeľa",
+    place: "Bratislava",
+    title: "Rovinové a prekážkové dostihy",
+    status: "archive-results",
+    statusLabel: "Archív · výsledky",
+    summary:
+      "Kompletné výsledky 8 dostihov (víťazi, poradie, kurzy totalizátora) sú nižšie v sekcii Výsledky.",
+    anchor: "#results",
+    linkLabel: "Zobraziť výsledky",
+  },
+  {
+    date: "7.6.2026",
+    day: "Nedeľa",
+    place: "Bratislava",
+    title: "Rovinové dostihy",
+    status: "archive-nodata",
+    statusLabel: "Archív",
+    summary: "Dostihový deň sa uskutočnil, podrobný rozpis výsledkov tu zatiaľ nie je spracovaný.",
+    externalUrl: "https://web.zavodisko.sk/sk/vysledky.html",
+    linkLabel: "Oficiálne výsledky",
+  },
+  {
+    date: "14.6.2026",
+    day: "Nedeľa",
+    place: "Topoľčianky",
+    title: "Rovinové a prekážkové dostihy",
+    status: "archive-nodata",
+    statusLabel: "Archív",
+    summary: "Dostihový deň sa uskutočnil, podrobný rozpis výsledkov tu zatiaľ nie je spracovaný.",
+    externalUrl: "https://web.zavodisko.sk/sk/vysledky.html",
+    linkLabel: "Oficiálne výsledky",
+  },
+  {
+    date: "2.7.2026",
+    day: "Štvrtok",
+    place: "Bratislava",
+    title: "Rovinové a klusácke dostihy",
+    status: "archive-nodata",
+    statusLabel: "Archív",
+    summary:
+      "Náhradný termín za zrušený deň 28.6.2026. Podrobný rozpis výsledkov tu zatiaľ nie je spracovaný.",
+    externalUrl: "https://web.zavodisko.sk/sk/vysledky.html",
+    linkLabel: "Oficiálne výsledky",
+  },
+  {
+    date: "19.7.2026",
+    day: "Nedeľa",
+    place: "Bratislava",
+    title: "34. Slovenské derby",
+    status: "archive-results",
+    statusLabel: "Archív · výsledky",
+    summary:
+      "Víťazom sa stal outsider Alma De Fuego (dž. Szczepan Mazur) v kurze 40,5:1. Zhrnutie je nižšie v sekcii Výsledky.",
+    anchor: "#results",
+    linkLabel: "Zobraziť výsledok",
+  },
   {
     date: "9.8.2026",
     day: "Nedeľa",
-    title: "32. Zlatý bičík a 35. Cena turfu",
     place: "Bratislava",
-    time: "14:00",
-    mapsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=Z%C3%A1vodisko%20Bratislava%20Staroh%C3%A1jska%2029",
-    note: "Dostihový deň s dvoma hlavnými cenami mítingu.",
+    title: "32. Zlatý bičík a 35. Cena turfu",
+    status: "upcoming",
+    statusLabel: "Predbežný program",
+    summary:
+      "Podrobný rozpis dostihov zatiaľ nie je zverejnený. Program sa doplní po zverejnení Závodiskom.",
+    externalUrl: zavodiskoTerminyUrl,
+    linkLabel: "Termíny na zavodisko.sk",
   },
   {
     date: "5.9.2026",
     day: "Sobota",
-    title: "34. Slovenské Oaks",
     place: "Bratislava",
-    time: "14:00",
-    mapsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=Z%C3%A1vodisko%20Bratislava%20Staroh%C3%A1jska%2029",
-    note: "Klasický dostih pre 3-ročné kobyly.",
+    title: "34. Slovenské Oaks",
+    status: "upcoming",
+    statusLabel: "Predbežný program",
+    summary:
+      "Klasický dostih pre 3-ročné kobyly. Podrobný rozpis dostihov zatiaľ nie je zverejnený.",
+    externalUrl: zavodiskoTerminyUrl,
+    linkLabel: "Termíny na zavodisko.sk",
   },
   {
     date: "20.9.2026",
     day: "Nedeľa",
-    title: "Slovenský St. Leger",
     place: "Bratislava",
-    time: "13:00",
-    mapsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=Z%C3%A1vodisko%20Bratislava%20Staroh%C3%A1jska%2029",
-    note: "Posledný klasický dostih sezóny pre 3-ročné kone.",
+    title: "Slovenský St. Leger",
+    status: "upcoming",
+    statusLabel: "Predbežný program",
+    summary:
+      "Posledný klasický dostih sezóny pre 3-ročné kone. Podrobný rozpis dostihov zatiaľ nie je zverejnený.",
+    externalUrl: zavodiskoTerminyUrl,
+    linkLabel: "Termíny na zavodisko.sk",
   },
 ];
 
@@ -417,7 +495,7 @@ const allEntries = races.flatMap((race, raceIndex) =>
 );
 
 const raceList = document.querySelector("#race-list");
-const upcomingList = document.querySelector("#upcoming-list");
+const raceDayList = document.querySelector("#race-day-list");
 const resultSummary = document.querySelector("#result-summary");
 const resultsList = document.querySelector("#results-list");
 const horseTable = document.querySelector("#horse-table");
@@ -457,23 +535,25 @@ function renderRaceOptions() {
   });
 }
 
-function renderUpcomingEvents() {
-  upcomingList.innerHTML = upcomingEvents
-    .map(
-      (event, index) => `
-        <article class="upcoming-card ${index === 0 ? "is-next" : ""}">
+function renderRaceDays() {
+  const nextUpcomingIndex = raceDays.findIndex((day) => day.status === "upcoming");
+  raceDayList.innerHTML = raceDays
+    .map((day, index) => {
+      const link = day.anchor
+        ? `<a class="map-link" href="${day.anchor}">${day.linkLabel}</a>`
+        : `<a class="map-link" href="${day.externalUrl}" target="_blank" rel="noreferrer">${day.linkLabel}</a>`;
+      return `
+        <article class="upcoming-card ${index === nextUpcomingIndex ? "is-next" : ""}">
           <div>
-            <p class="upcoming-date">${event.day} · ${event.date} · ${event.time}</p>
-            <h3>${event.title}</h3>
-            <p>${event.place}</p>
-            <small>${event.note}</small>
+            <p class="upcoming-date">${day.day} · ${day.date} · ${day.place}</p>
+            <span class="pill status-${day.status}">${day.statusLabel}</span>
+            <h3>${day.title}</h3>
+            <small>${day.summary}</small>
           </div>
-          <a class="map-link" href="${event.mapsUrl}" target="_blank" rel="noreferrer">
-            Navigovať
-          </a>
+          ${link}
         </article>
-      `,
-    )
+      `;
+    })
     .join("");
 }
 
@@ -755,7 +835,7 @@ function render() {
 
 renderRaceOptions();
 renderBetRaceOptions();
-renderUpcomingEvents();
+renderRaceDays();
 renderPreviousResults();
 renderStats(stats.jockeys, "#trainer-stats", "×");
 renderStats(stats.stables, "#stable-stats", "×");

@@ -662,6 +662,31 @@ h2 {
   font-weight: 800;
 }
 
+.pill.status-archive-program {
+  background: #e6ecf7;
+  color: var(--blue);
+}
+
+.pill.status-archive-results {
+  background: #e2f3ea;
+  color: var(--green-dark);
+}
+
+.pill.status-archive-nodata {
+  background: #ece6d8;
+  color: var(--muted);
+}
+
+.pill.status-upcoming {
+  background: #fbe8e2;
+  color: var(--red);
+}
+
+.upcoming-card .pill {
+  margin-bottom: 8px;
+  font-size: 0.78rem;
+}
+
 .race-count {
   min-width: 82px;
   display: grid;
