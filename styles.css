@@ -368,6 +368,34 @@ h2 {
   background: var(--green-dark);
   color: #fff;
   font-weight: 900;
+  font-size: 1.1rem;
+}
+
+.finish-position.place-1 {
+  background: #f6d365;
+  box-shadow: inset 0 0 0 2px #c99a2e;
+}
+
+.finish-position.place-2 {
+  background: #dfe4ea;
+  box-shadow: inset 0 0 0 2px #a7adb5;
+}
+
+.finish-position.place-3 {
+  background: #e7b98c;
+  box-shadow: inset 0 0 0 2px #b6763a;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .result-podium strong {
