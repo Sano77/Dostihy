@@ -230,7 +230,7 @@ const raceDays = [
     status: "archive-results",
     statusLabel: "Archív · víťazi",
     summary:
-      "Hlavnú rovinu vyhral Tornado (viedol od štartu do cieľa), prekážky Iarak (Šurany). V Cene Žikavy triumfovala Viva Fritz (dž. Jaroslav Línek), Cenu Machuliniec vyhral Gran Crime (dž. Dominika Baranová).",
+      "🥇 Hlavnú rovinu vyhral Tornado (viedol od štartu do cieľa), prekážky Iarak (Šurany). V Cene Žikavy triumfovala Viva Fritz (dž. Jaroslav Línek), Cenu Machuliniec vyhral Gran Crime (dž. Dominika Baranová).",
     externalUrl: "https://web.zavodisko.sk/sk/vysledky.html",
     linkLabel: "Oficiálne výsledky",
   },
@@ -242,7 +242,7 @@ const raceDays = [
     status: "archive-results",
     statusLabel: "Archív · víťazi",
     summary:
-      "Náhradný termín za zrušený deň 28.6.2026. Memoriály Karola Frbasa a Stanislava Rudu vyhrali Hailey a Rafaelo, dvoma víťazstvami sa presadila am. Nikola Miklová.",
+      "Náhradný termín za zrušený deň 28.6.2026. Memoriály Karola Frbasa a Stanislava Rudu vyhrali 🥇 Hailey a 🥇 Rafaelo, dvoma víťazstvami sa presadila am. Nikola Miklová.",
     externalUrl: "https://web.zavodisko.sk/sk/vysledky.html",
     linkLabel: "Oficiálne výsledky",
   },
@@ -254,7 +254,7 @@ const raceDays = [
     status: "archive-results",
     statusLabel: "Archív · výsledky",
     summary:
-      "Víťazom sa stal outsider Alma De Fuego (dž. Szczepan Mazur) v kurze 40,5:1. Zhrnutie je nižšie v sekcii Výsledky.",
+      "🥇 Víťazom sa stal outsider Alma De Fuego (dž. Szczepan Mazur) v kurze 40,5:1. Zhrnutie je nižšie v sekcii Výsledky.",
     anchor: "#results",
     linkLabel: "Zobraziť výsledok",
   },
@@ -481,6 +481,12 @@ function flagForHorse(name) {
   return countryFlags[code] || "🇸🇰";
 }
 
+const medals = { 1: "🥇", 2: "🥈", 3: "🥉" };
+
+function medalForPlace(place) {
+  return medals[Number(place)] || "";
+}
+
 const allEntries = races.flatMap((race, raceIndex) =>
   race.horses.map(([name, age, weight, stable, jockey], horseIndex) => ({
     raceIndex,
@@ -619,10 +625,10 @@ function renderPreviousResults() {
               .map(
                 ([place, horse, jockey, finish, evk]) => `
                   <li>
-                    <span class="finish-position">${place}</span>
+                    <span class="finish-position place-${place}" aria-hidden="true">${medalForPlace(place)}</span>
                     <div>
                       <strong><span class="flag" aria-hidden="true">${flagForHorse(horse)}</span>${horse}</strong>
-                      <small>${jockey} · výrok ${finish} · EVK ${evk}</small>
+                      <small><span class="visually-hidden">${place}. miesto ·</span>${jockey} · výrok ${finish} · EVK ${evk}</small>
                     </div>
                   </li>
                 `,
