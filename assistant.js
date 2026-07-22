@@ -307,8 +307,9 @@ const previousResults = {
   date: "24.5.2026",
   day: "Nedeľa",
   place: "Bratislava",
-  sourceUrl:
-    "https://web.zavodisko.sk/sk/vysledky.html?id_den=10181&typ_dostihu=1&stat=1&rok=2026",
+  idDen: 10181,
+  stat: 1,
+  rok: 2026,
   races: [
     {
       code: "7033",
@@ -558,6 +559,16 @@ function renderRaceDays() {
     .join("");
 }
 
+function resultDetailUrl(raceIndex) {
+  const params = new URLSearchParams({
+    id_den: String(previousResults.idDen),
+    typ_dostihu: String(raceIndex + 1),
+    stat: String(previousResults.stat),
+    rok: String(previousResults.rok),
+  });
+  return `https://web.zavodisko.sk/sk/vysledky.html?${params.toString()}`;
+}
+
 function renderPreviousResults() {
   const winners = previousResults.races.map((race) => race.podium[0][1]);
   const winningJockeys = countBy(
@@ -587,7 +598,7 @@ function renderPreviousResults() {
 
   resultsList.innerHTML = previousResults.races
     .map(
-      (race) => `
+      (race, index) => `
         <article class="result-card">
           <div class="result-head">
             <div>
@@ -599,7 +610,7 @@ function renderPreviousResults() {
                 <span>čas víťaza ${race.resultTime}</span>
               </div>
             </div>
-            <a class="map-link" href="${previousResults.sourceUrl}" target="_blank" rel="noreferrer">
+            <a class="map-link" href="${resultDetailUrl(index)}" target="_blank" rel="noreferrer">
               Detail
             </a>
           </div>
