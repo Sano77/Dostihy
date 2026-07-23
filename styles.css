@@ -79,12 +79,84 @@ main {
 }
 
 .hero {
+  position: relative;
   min-height: 430px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 360px;
   align-items: end;
   gap: 32px;
   padding: 72px 0 42px;
+  overflow: hidden;
+}
+
+.hero-copy,
+.hero-panel {
+  position: relative;
+  z-index: 1;
+}
+
+.race-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.racer {
+  position: absolute;
+  left: 0;
+  font-size: 3.4rem;
+  line-height: 1;
+  transform: translateX(-20vw) scaleX(-1);
+  animation: gallop linear infinite;
+  will-change: transform;
+}
+
+.racer-1 {
+  top: 8%;
+  font-size: 4rem;
+  animation-duration: 13s;
+  animation-delay: -2s;
+}
+
+.racer-2 {
+  top: 34%;
+  font-size: 2.9rem;
+  animation-duration: 17s;
+  animation-delay: -8s;
+}
+
+.racer-3 {
+  top: 58%;
+  font-size: 3.6rem;
+  animation-duration: 15s;
+  animation-delay: -5s;
+}
+
+.racer-4 {
+  top: 80%;
+  font-size: 2.6rem;
+  animation-duration: 20s;
+  animation-delay: -12s;
+}
+
+@keyframes gallop {
+  from {
+    transform: translateX(-20vw) scaleX(-1);
+  }
+  to {
+    transform: translateX(120vw) scaleX(-1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .racer {
+    animation: none;
+    left: 8%;
+    transform: scaleX(-1);
+  }
 }
 
 .hero-copy h1 {
