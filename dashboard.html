@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="sk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vysoká Apartments · Pricing Dashboard</title>
+    <meta
+      name="description"
+      content="AI-asistovaný dashboard dynamického pricingu pre Vysoká Apartments (Vysoká 20, Bratislava) — prílety BTS, stanice Nivy/Hlavná/Petržalka, eventy, konkurencia."
+    />
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo">VA</span>
+        <div>
+          <div class="title">Vysoká Apartments · Pricing Dashboard</div>
+          <div class="subtitle">Vysoká 20, 811 06 Bratislava</div>
+        </div>
+      </div>
+      <nav aria-label="Navigácia">
+        <a href="#overview">Prehľad</a>
+        <a href="#calendar">Kalendár</a>
+        <a href="#flights">BTS</a>
+        <a href="#stations">Stanice</a>
+        <a href="#events">Eventy</a>
+        <a href="#competitors">Konkurencia</a>
+        <a href="#ai">AI</a>
+        <a href="#settings">Nastavenia</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="overview" class="kpis">
+        <article class="kpi">
+          <div class="kpi-label">Obsadenosť (7d)</div>
+          <div class="kpi-value" id="kpi-occupancy">—</div>
+          <div class="kpi-trend" id="kpi-occupancy-trend"></div>
+        </article>
+        <article class="kpi">
+          <div class="kpi-label">Priem. cena (7d)</div>
+          <div class="kpi-value" id="kpi-adr">—</div>
+          <div class="kpi-trend" id="kpi-adr-trend"></div>
+        </article>
+        <article class="kpi">
+          <div class="kpi-label">Forecast tržby (30d)</div>
+          <div class="kpi-value" id="kpi-revenue">—</div>
+          <div class="kpi-trend" id="kpi-revenue-trend"></div>
+        </article>
+        <article class="kpi">
+          <div class="kpi-label">Index dopytu (zajtra)</div>
+          <div class="kpi-value" id="kpi-demand">—</div>
+          <div class="kpi-trend" id="kpi-demand-trend"></div>
+        </article>
+      </section>
+
+      <section id="calendar" class="card">
+        <header class="card-header">
+          <h2>Cenový kalendár — 60 dní</h2>
+          <div class="controls">
+            <label>Horizont
+              <select id="horizon">
+                <option value="14">14 dní</option>
+                <option value="30" selected>30 dní</option>
+                <option value="60">60 dní</option>
+                <option value="90">90 dní</option>
+              </select>
+            </label>
+            <button id="recalc" class="btn-primary">Prepočítať</button>
+            <button id="apply-ai" class="btn-secondary" title="Použiť AI návrh na všetky dni">Akceptovať AI ceny</button>
+          </div>
+        </header>
+        <div class="legend">
+          <span class="dot dot-low"></span> nízky dopyt
+          <span class="dot dot-mid"></span> stredný
+          <span class="dot dot-high"></span> vysoký
+          <span class="dot dot-peak"></span> peak
+          <span class="legend-sep"></span>
+          <em>Zelené pozadie = AI cena akceptovaná, žlté = pending review</em>
+        </div>
+        <div id="calendar-grid" class="calendar-grid"></div>
+      </section>
+
+      <div class="two-col">
+        <section id="flights" class="card">
+          <header class="card-header">
+            <h2>Letisko BTS — prílety</h2>
+            <div class="controls">
+              <input type="date" id="flights-date" />
+              <span class="muted" id="flights-source">zdroj: simulácia</span>
+            </div>
+          </header>
+          <div class="table-wrap">
+            <table id="flights-table">
+              <thead>
+                <tr><th>Čas</th><th>Let</th><th>Z</th><th>Linka</th><th>Pax (odhad)</th><th>Status</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <footer class="card-footer">
+            <div class="muted">Súčet pax (deň): <strong id="flights-pax-sum">—</strong></div>
+          </footer>
+        </section>
+
+        <section id="stations" class="card">
+          <header class="card-header">
+            <h2>Stanice — odhad príchodov / deň</h2>
+            <div class="controls">
+              <input type="date" id="stations-date" />
+            </div>
+          </header>
+          <div class="stations-grid">
+            <div class="station" data-id="nivy">
+              <div class="station-name">AS Nivy</div>
+              <div class="station-pax" id="pax-nivy">—</div>
+              <div class="station-detail" id="detail-nivy"></div>
+            </div>
+            <div class="station" data-id="hlavna">
+              <div class="station-name">Hlavná stanica</div>
+              <div class="station-pax" id="pax-hlavna">—</div>
+              <div class="station-detail" id="detail-hlavna"></div>
+            </div>
+            <div class="station" data-id="petrzalka">
+              <div class="station-name">Petržalka (žel.)</div>
+              <div class="station-pax" id="pax-petrzalka">—</div>
+              <div class="station-detail" id="detail-petrzalka"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section id="events" class="card">
+        <header class="card-header">
+          <h2>Eventy — šport, kultúra, politika</h2>
+          <div class="controls">
+            <label><input type="checkbox" class="filter-ev" value="sport" checked /> šport</label>
+            <label><input type="checkbox" class="filter-ev" value="culture" checked /> kultúra</label>
+            <label><input type="checkbox" class="filter-ev" value="political" checked /> politika</label>
+            <label><input type="checkbox" class="filter-ev" value="conference" checked /> konferencie</label>
+            <button id="add-event" class="btn-secondary">+ Pridať event</button>
+          </div>
+        </header>
+        <div class="table-wrap">
+          <table id="events-table">
+            <thead>
+              <tr><th>Dátum</th><th>Názov</th><th>Miesto</th><th>Typ</th><th>Kapacita</th><th>Dopad</th><th></th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="competitors" class="card">
+        <header class="card-header">
+          <h2>Konkurencia v okolí (Staré Mesto)</h2>
+          <div class="controls">
+            <input type="date" id="comp-date" />
+            <button id="refresh-comp" class="btn-secondary">Obnoviť</button>
+          </div>
+        </header>
+        <div class="table-wrap">
+          <table id="comp-table">
+            <thead>
+              <tr><th>Apartmán</th><th>Vzdialenosť</th><th>Hodnotenie</th><th>Cena / noc</th><th>Δ vs. naša</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <footer class="card-footer">
+          <div class="muted">Median konkurencie: <strong id="comp-median">—</strong> · Pozícia: <strong id="comp-position">—</strong></div>
+        </footer>
+      </section>
+
+      <section id="ai" class="card">
+        <header class="card-header">
+          <h2>AI Pricing Co-Pilot</h2>
+          <div class="controls">
+            <select id="ai-model">
+              <option value="claude-sonnet-4-6">claude-sonnet-4-6 (odporúčané)</option>
+              <option value="claude-opus-4-8">claude-opus-4-8 (najvýkonnejšie)</option>
+              <option value="claude-haiku-4-5-20251001">claude-haiku-4-5 (rýchle)</option>
+            </select>
+            <button id="ask-ai" class="btn-primary">Spýtať sa AI</button>
+          </div>
+        </header>
+        <div class="ai-pane">
+          <div class="ai-left">
+            <label>Otázka / pokyn pre AI
+              <textarea id="ai-prompt" rows="4">Pozri sa na nasledujúcich 14 dní. Pre každý deň navrhni optimálnu cenu noci, ktorá maximalizuje tržby pri cieľovej obsadenosti 85%. Vysvetli stručne dôvody (eventy, prílety, konkurencia, deň v týždni). Vráť tabuľku dátum · navrhovaná cena · krátky dôvod.</textarea>
+            </label>
+            <div class="ai-meta muted">Kontext bude obsahovať: 14 dní dopytu, eventy, konkurenciu, prílety BTS, súčasné ceny.</div>
+          </div>
+          <div class="ai-right">
+            <div class="ai-output" id="ai-output">AI odpoveď sa zobrazí tu…</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="settings" class="card">
+        <header class="card-header"><h2>Nastavenia pricingu</h2></header>
+        <div class="settings-grid">
+          <label>Základná cena (€/noc)
+            <input type="number" id="set-base" value="89" min="20" max="500" />
+          </label>
+          <label>Minimálna cena
+            <input type="number" id="set-min" value="55" min="20" max="500" />
+          </label>
+          <label>Maximálna cena
+            <input type="number" id="set-max" value="240" min="50" max="800" />
+          </label>
+          <label>Cieľová obsadenosť (%)
+            <input type="number" id="set-occ" value="85" min="50" max="100" />
+          </label>
+          <label>Počet apartmánov
+            <input type="number" id="set-units" value="3" min="1" max="20" />
+          </label>
+          <label>Weekend prirážka (%)
+            <input type="number" id="set-weekend" value="18" min="0" max="100" />
+          </label>
+          <label>Event multiplikátor (max)
+            <input type="number" id="set-event" value="1.6" min="1" max="3" step="0.1" />
+          </label>
+          <label>Anthropic API kľúč (uložený lokálne)
+            <input type="password" id="set-apikey" placeholder="sk-ant-…" autocomplete="off" />
+          </label>
+        </div>
+        <footer class="card-footer">
+          <button id="save-settings" class="btn-primary">Uložiť</button>
+          <button id="reset-settings" class="btn-secondary">Reset</button>
+          <span class="muted" id="settings-saved"></span>
+        </footer>
+      </section>
+
+      <section class="card sources">
+        <header class="card-header"><h2>Dátové zdroje — adaptéry</h2></header>
+        <ul class="sources-list">
+          <li><strong>BTS prílety:</strong> <code>bts.aero</code> · AeroDataBox API · FlightAware AeroAPI — adaptér v <code>dashboard.js</code> → <code>fetchFlights()</code></li>
+          <li><strong>Hlavná stanica / Petržalka:</strong> ZSSK CIS open data (cestovný poriadok) → <code>fetchTrainArrivals()</code></li>
+          <li><strong>AS Nivy:</strong> Slovak Lines / RegioJet / FlixBus CSV cestovných poriadkov → <code>fetchBusArrivals()</code></li>
+          <li><strong>Eventy:</strong> Goout.net, Predpredaj.sk, Ticketportal, kalendár NR SR, Slovan/Tipos Aréna kalendár → <code>fetchEvents()</code></li>
+          <li><strong>Konkurencia:</strong> Booking/Airbnb scraping (cez tvoj server alebo služby ako AirDNA/PriceLabs) → <code>fetchCompetitors()</code></li>
+        </ul>
+        <p class="muted">
+          Bez backendu (GitHub Pages) bežia tieto adaptéry v simulačnom režime so seedovanými dátami. Keď zoženieš API kľúče / proxy, prepneš zdroj v <code>dashboard.js</code>.
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Vysoká Apartments · interný nástroj</span>
+      <span class="muted">v0.1 · build <span id="build-date">—</span></span>
+    </footer>
+
+    <script src="dashboard.js"></script>
+  </body>
+</html>
